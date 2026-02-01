@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "nodemon -w src/server -x tsx src/server.ts",
-    "start": "cross-env NODE_ENV=production tsx src/server.ts"
+    "start": "vite build && cross-env NODE_ENV=production tsx src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "mongoose": "^9.1.5",
     "nodemon": "^3.1.11",
     "react": "^19.2.4",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.4",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",

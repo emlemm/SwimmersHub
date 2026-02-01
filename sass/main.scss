@@ -1,0 +1,19 @@
+// custom variables - must come before any added themes
+$white: #F4F5F6;
+$gray-600: #858A8F;
+$gray-800: #373D43;
+$black: #090A0B;
+$dark: $gray-800;
+
+// import the function and variables - make sure you import these after any redefined variables
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+$custom-theme-colors: (
+
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// import bootstrap - must be imported after our homemade variables and after any added themes because the bootstrap variables have the !default statement.
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
