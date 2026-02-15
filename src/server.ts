@@ -2,6 +2,10 @@ import express from "express";
 import ViteExpress from "vite-express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { router as userRoutes } from './routes/userRoutes'; 
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import { Util } from "./utilities/index"
 dotenv.config()
 
 const app = express();
@@ -24,3 +28,11 @@ mongoose.connect(mongoURI)
     console.error('MongoDB connection error:', err);
     process.exit(1);
   });
+
+
+/* middleware */
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(Util.checkJWTToken);
+
+app.use('/user', userRoutes);

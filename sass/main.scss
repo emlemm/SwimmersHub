@@ -1,16 +1,32 @@
 // custom variables - must come before any added themes
 $white: #F4F5F6;
+$gray-200: #D2D6DA;
 $gray-600: #858A8F;
 $gray-800: #373D43;
 $black: #090A0B;
+$blue: #0053B8; //now primary is this blue
+$green: #109337; //now success is this green
+$cyan: #0ABAFF; //now info is this cyan (between blue and ltBlue)
+
+//reassign theme colors
+
 $dark: $gray-800;
+$light: $gray-200;
 
 // import the function and variables - make sure you import these after any redefined variables
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
 
 $custom-theme-colors: (
-
+  "dkBlue": #002E66,
+  "medBlue": #5CD1FF,
+  "ltBlue": #C2EEFF,
+  "ltBlue2": #eff9fb,
+  "dkGreen": #0A5C23,
+  "medGreen": #14BB45,
+  "ltGreen": #47EB78,
+  "ltGreen2": #B6F7C9
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
