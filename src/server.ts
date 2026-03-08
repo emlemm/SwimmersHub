@@ -2,7 +2,11 @@ import express from "express";
 import ViteExpress from "vite-express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import { router as userRoutes } from './routes/userRoutes'; 
+import { router as userRoutes } from "./routes/userRoutes"; 
+import { router as swimmerRoutes } from "./routes/swimmerRoutes";
+import { router as meetRoutes } from "./routes/meetRoutes";
+import { router as raceRoutes } from "./routes/raceRoutes";
+import { router as eventRoutes } from "./routes/eventRoutes";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Util } from "./utilities/index"
@@ -35,4 +39,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(Util.checkJWTToken);
 
+/* routes */
 app.use('/user', userRoutes);
+app.use('/swimmer', swimmerRoutes);
+app.use('/meet', meetRoutes);
+app.use('/race', raceRoutes);
+app.use('/event', eventRoutes);

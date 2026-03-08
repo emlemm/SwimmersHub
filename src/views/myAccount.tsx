@@ -1,8 +1,12 @@
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
+import { ProfileTab } from './profileTab';
+import { SwimmersTab } from './swimmersTab';
+import { MeetsTab } from './meetsTab';
+import * as React from "react";
 
 export function MyAccount() {
+
   return(
     <section id="myAccount">
       <div className="container my-2">
@@ -11,19 +15,13 @@ export function MyAccount() {
           id="myAccountTabs"
           className="mb-3" >
           <Tab eventKey="profile" title="Profile">
-            <h2>Profile</h2>
-                <p>FirstName</p>
-                <p>LastName</p>
-                <p>Email</p>
-                <button>Edit Profile</button>
+            <ProfileTab />
           </Tab>
           <Tab eventKey="swimmers" title="Swimmers">
-            <h2>Swimmers</h2>
-            <button>Add a Swimmer</button>
+            <SwimmersTab />
           </Tab>
-          <Tab eventKey="events" title="Events">
-            <h2>Events</h2>
-            <p>Future events here</p>
+          <Tab eventKey="meets" title="Swim Meets">
+            <MeetsTab />
           </Tab>
         </Tabs>
 

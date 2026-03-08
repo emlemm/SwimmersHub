@@ -1,15 +1,13 @@
 import mongoose from "mongoose";
-import {Swimmer} from './swimmer';
 
 const eventSchema = new mongoose.Schema(
   {
-    meetId: { type: Number, required: true },
-    raceId: { type: Number, required: true },
-    heatNum: { type: Number, required: true, unique: true },
-    swimmerIds: [Number]
+    eventNumber: { type: Number, required: true },
+    meetId: { type: mongoose.Types.ObjectId, required: true, ref: "Meet" },
+    raceId: { type: mongoose.Types.ObjectId, required: true, ref: "Race" },
+    swimmerNames: [String]
   },
   { collection: "events", timestamps: false }
 );
 
 export const Event = mongoose.model('Event', eventSchema);
-//export function getSwimmersForEvent (event : Event) {}

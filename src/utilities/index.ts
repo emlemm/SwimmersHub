@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction, RequestHandler } from "express";
 import jwt, { VerifyErrors } from "jsonwebtoken";
-import { User, UserWithoutPassword } from "../models/user"
 
 export const Util = {
   handleErrors: (fn: RequestHandler) => {
@@ -29,5 +28,6 @@ export const Util = {
     } else {
       next()
     }
-  }
+  },
+
 }

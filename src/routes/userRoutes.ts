@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createNewUser, loginUser } from '../controllers/users';
+import { createNewUser, loginUser, logoutUser, getUserInfo } from '../controllers/users';
 import { validateAccount as userVal } from "../utilities/usersValidation";
 import { validateLogin as loginVal } from '../utilities/usersValidation';
 import { Util } from "../utilities/index"
@@ -17,5 +17,13 @@ router.post("/",
 router.post("/login",
   loginVal.loginRules(),
   loginVal.checkLoginData,
-  Util.handleErrors(loginUser)
+  Util.handleErrors(loginUser),
 );
+
+router.get("/logout",
+  Util.handleErrors(logoutUser)
+);
+
+router.get("/", 
+  Util.handleErrors(getUserInfo)
+)

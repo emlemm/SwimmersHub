@@ -13,4 +13,4 @@ const userSchema = new mongoose.Schema(
 
 export const User = mongoose.model('User', userSchema);
 
-export type UserWithoutPassword = Pick<InstanceType<typeof User>, "firstName" | "lastName" | "email" | "coachRole">;
+export type UserWithoutPassword = Pick<InstanceType<typeof User>, "_id" | "firstName" | "lastName" | "email" | "coachRole">;

@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const raceResultsSchema = new mongoose.Schema(
   {
-    eventId: { type: Number, required: true },
-    swimmerId: { type: Number, required: true }, 
+    eventId: { type: mongoose.Types.ObjectId, required: true, ref: "Event" },
+    swimmerId: { type: mongoose.Types.ObjectId, required: true, ref: "Swimmer" }, 
     disqualified: Boolean,
     time: Number
   },

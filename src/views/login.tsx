@@ -1,6 +1,8 @@
 import * as React from "react";
+import { Alert } from "react-bootstrap";
 
 export function LoginPage() {
+  const [error, setError ] = React.useState<string>("");
 
   const form = React.useRef<HTMLFormElement>(null);
   const submitLogin = React.useCallback(async ()=> {
@@ -14,12 +16,11 @@ export function LoginPage() {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(payload)
     });
-    
+
     if (resp.ok) {
-      const responseBody = resp.json();
       window.location.hash = "#myAccount"
     } else {
-      window.location.hash = "#error"
+      setError((await resp.json()).message)
     }
     }, [])
 
@@ -29,11 +30,15 @@ export function LoginPage() {
           <div className="text-center pt-5">
             <p className="lead">Don't yet have an account? <a href="#createAccount" className="btn btn-outline-dkBlue text-decoration-underline">Sign up here</a></p>
           </div>
+          {error ?
+          <Alert variant="warning">
+            {error}
+          </Alert> : null}
           <div className="row justify-content-center my-5">
 
             <div className="col-lg-6">
               <form ref={form}>
-                <label className="form-label" htmlFor="email" aria-require >Email address:</label>
+                <label className="form-label" htmlFor="email" >Email address:</label>
                 <div className="mb-4 input-group">
                   <span className="input-group-text">
                     <i className="bi bi-envelope-fill"></i>

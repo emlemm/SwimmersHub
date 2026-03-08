@@ -31,13 +31,13 @@ export const loginUser = async (req: Request, res: Response) => {
   }; 
 
   if (await bcrypt.compare(password, user.password)) {  
-    const userWithoutPassword: UserWithoutPassword = {firstName: user.firstName, lastName: user.lastName, email: user.email, coachRole: user.coachRole};
+    const userWithoutPassword: UserWithoutPassword = {_id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email, coachRole: user.coachRole};
     const accessToken = jwt.sign(userWithoutPassword, process.env.ACCESS_TOKEN_SECRET!, { expiresIn: 3600 * 1000 })
     
     if(process.env.NODE_ENV === 'development') {
-      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      res.cookie("jwt", accessToken, { httpOnly: false, maxAge: 3600 * 1000 })
     } else {
-      res.cookie("jwt", accessToken, { httpOnly: true, secure: true, maxAge: 3600 * 1000 })
+      res.cookie("jwt", accessToken, { httpOnly: false, secure: true, maxAge: 3600 * 1000 })
     }
     
     return res.status(200).json({message: "Success"});
@@ -47,3 +47,19 @@ export const loginUser = async (req: Request, res: Response) => {
     return;
   };
 };
+
+export const logoutUser = async (req: Request, res: Response) => {
+  res.clearCookie("jwt")
+  res.status(200).json({message: "Success"});
+};
+
+export const getUserInfo = async (req: Request, res: Response) => {
+  const email = res.locals.accountData.email;
+  const signedInUser = await User.findOne({email});
+  if (signedInUser === null) {
+    res.status(401).json({message: "User not found"})
+    return;
+  }
+  const userWithoutPassword: UserWithoutPassword = {_id: signedInUser._id, firstName: signedInUser.firstName, lastName: signedInUser.lastName, email: signedInUser.email, coachRole: signedInUser.coachRole};
+  res.status(200).json(userWithoutPassword)
+}

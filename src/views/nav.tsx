@@ -1,5 +1,10 @@
 
-export function NavBar() {
+interface NavBarProps{
+  isLoggedIn?: boolean;
+}
+
+export function NavBar(props: NavBarProps) {
+
   return(
     <nav className="navbar navbar-expand-md navbar-light bg-medBlue">
     <div className="container-xxl">
@@ -12,7 +17,7 @@ export function NavBar() {
       <div className="justify-content-end">
         <ul className="navbar-nav">
           <li className="nav-item ms-2">
-            <a className="nav-link active btn btn-dkBlue btn-lg text-ltBlue2" aria-current="page" href="#login">Login</a>
+            <a className="nav-link active btn btn-dkBlue btn-lg text-ltBlue2" aria-current="page" href={props.isLoggedIn ? "#logout":"#login"}>{props.isLoggedIn ? "Logout":"Login"}</a>
           </li>
         </ul>
       </div>

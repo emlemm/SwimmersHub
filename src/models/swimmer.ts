@@ -6,6 +6,7 @@ const swimmerSchema = new mongoose.Schema(
     lastName: { type: String, required: true },
     birthday: { type: Date, required: true },
     team: { type: String, required: true },
+    userId: {type: mongoose.Types.ObjectId, required: true, ref: "User" },
     bio: String,
   },
   { collection: "swimmers", timestamps: false }
