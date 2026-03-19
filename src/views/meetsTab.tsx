@@ -59,7 +59,7 @@ export function MeetsTab() {
       formEdit.current?.reportValidity()
       return
     }
-    const payload = Object.fromEntries(new FormData(form.current ?? undefined).entries()) as any;
+    const payload = Object.fromEntries(new FormData(formEdit.current ?? undefined).entries()) as any;
     const resp = await fetch("/meet/edit", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -68,7 +68,7 @@ export function MeetsTab() {
 
     if (resp.ok) {
       setVersion((v)=> v+1);
-      setShowSwimMeetForm(false);
+      setShowEditMeetForm("");
     } else {
       setError((await resp.json()).message);
     }
@@ -95,35 +95,36 @@ export function MeetsTab() {
               <Card.Text>Address: {meet.address}</Card.Text>
               {accountData?.coachRole ? (
                 <>
+                  <Button className="m-2" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
                   <Button id="editMeetBtn" className="m-2" onClick={() => onEditMeetForm(meet._id)}>Edit Meet</Button>
                   <Button className="m-2" href={`#addEvents/${meet._id}`} >Add Events</Button>
-                  <Button className="m-2" >Input Results</Button>
+                  <Button className="m-2" href={`#inputRaceTimes/${meet._id}`} >Input Results</Button>
                 </>
               ): ( 
                 <>
-                  <Button className="m-2">View Events</Button>
-                  <Button className="m-2">View Race Results</Button>
+                  <Button className="m-2" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
+                  <Button className="m-2" href={`#meetResults/${meet._id}`} >View Race Results</Button>
                 </>
               )}
               {showEditMeetForm === meet._id? <Form ref={formEdit}><br></br>
                 <Form.Group className="mb-3" controlId="meetDate">
                   <Form.Label>Date:</Form.Label>
-                  <Form.Control type="date" name="meetDate" value={formatDateForValue(meet.meetDate)} required />
+                  <Form.Control type="date" name="meetDate" defaultValue={formatDateForValue(meet.meetDate)} required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="hostTeam">
                   <Form.Label>Hosting Team:</Form.Label>
-                  <Form.Control type="text" value={meet.hostTeam} name="hostTeam" required />
+                  <Form.Control type="text" defaultValue={meet.hostTeam} name="hostTeam" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="address">
                   <Form.Label>Address:</Form.Label>
-                  <Form.Control type="text" value={meet.address} name="address" required />
+                  <Form.Control type="text" defaultValue={meet.address} name="address" required />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="travellingTeam">
                   <Form.Label>Travelling Team:</Form.Label>
-                  <Form.Control type="text" value={meet.travellingTeam} name="travellingTeam" required />
+                  <Form.Control type="text" defaultValue={meet.travellingTeam} name="travellingTeam" required />
                 </Form.Group>
                 <Form.Group className="d-none" controlId="meetId">
-                  <Form.Control type="" value={meet._id} name="meetId"></Form.Control>
+                  <Form.Control type="" readOnly value={meet._id} name="meetId"></Form.Control>
                 </Form.Group>
                 <div className="mb-4 text-center">
                   <a onClick={submitEditMeet} className="btn btn-dkBlue btn-lg">Submit Edited Swim Meet</a>

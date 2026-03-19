@@ -15,3 +15,8 @@ export const editMeet = async (req: Request, res: Response) => {
   const meetUpdated = await Meet.findByIdAndUpdate(req.body.meetId, {...req.body});
   res.status(200).json(meetUpdated);
 };
+
+export const getMeetById = async (req: Request, res: Response) => {
+  const currentMeet = await Meet.findById(req.params.id);
+  res.status(200).json(currentMeet);
+};

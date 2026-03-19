@@ -4,8 +4,8 @@ export function Footer() {
   let year = d.getFullYear();
 
   return(
-    <section id="footer">
-      <footer>
+    <section id="footer" >
+      <footer className="mt-auto">
         <p className="lead ps-2">&copy; {year} - Swimmers Hub</p>
       </footer>
     </section>

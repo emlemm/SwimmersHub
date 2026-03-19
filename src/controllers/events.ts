@@ -14,3 +14,9 @@ export const createNewEvents = async (req: Request, res: Response) => {
   await session.endSession();
   res.status(201).json({message: "Successful entry"});
 }
+
+export const getEventsWithMeetId = async (req: Request, res: Response) => {
+  const meetId = req.params.meetId;
+  const eventsFromMeet = await Event.find({meetId: meetId}).populate("raceId");
+  res.status(200).json(eventsFromMeet);
+};

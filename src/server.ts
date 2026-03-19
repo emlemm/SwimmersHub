@@ -7,6 +7,7 @@ import { router as swimmerRoutes } from "./routes/swimmerRoutes";
 import { router as meetRoutes } from "./routes/meetRoutes";
 import { router as raceRoutes } from "./routes/raceRoutes";
 import { router as eventRoutes } from "./routes/eventRoutes";
+import { router as raceResultsRoutes } from "./routes/raceResultsRoutes";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Util } from "./utilities/index"
@@ -45,3 +46,4 @@ app.use('/swimmer', swimmerRoutes);
 app.use('/meet', meetRoutes);
 app.use('/race', raceRoutes);
 app.use('/event', eventRoutes);
+app.use('/raceResults', raceResultsRoutes);

@@ -5,7 +5,10 @@ export const Util = {
   handleErrors: (fn: RequestHandler) => {
     return (req: Request, res: Response, next: NextFunction) => {
       Promise.resolve(fn(req, res, next))
-        .catch((error) => res.status(500).json(error))
+        .catch((error) => {
+          console.error(error)
+          res.status(500).json(error)
+        })
     }
   },
 

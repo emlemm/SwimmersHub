@@ -1,10 +1,13 @@
 import express from "express";
 import { Util } from "../utilities/index";
-//import { validateEvent as eventVal } from "../utilities/eventValidation";
-import { createNewEvents } from "../controllers/events";
+import { createNewEvents, getEventsWithMeetId } from "../controllers/events";
 
 export const router = express.Router();
 
 router.post("/",
   Util.handleErrors(createNewEvents)
+);
+
+router.get("/:meetId",
+  Util.handleErrors(getEventsWithMeetId)
 );

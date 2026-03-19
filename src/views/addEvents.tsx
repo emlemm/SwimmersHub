@@ -6,12 +6,13 @@ import Table from 'react-bootstrap/Table';
 
 export function AddEvents() {
 
-  const swimmer1=React.useRef<HTMLInputElement>(null);
-  const swimmer2=React.useRef<HTMLInputElement>(null);
-  const swimmer3=React.useRef<HTMLInputElement>(null);
-  const swimmer4=React.useRef<HTMLInputElement>(null);
-  const swimmer5=React.useRef<HTMLInputElement>(null);
-  const swimmer6=React.useRef<HTMLInputElement>(null);
+  const swimmer1 = React.useRef<HTMLInputElement>(null);
+  const swimmer2 = React.useRef<HTMLInputElement>(null);
+  const swimmer3 = React.useRef<HTMLInputElement>(null);
+  const swimmer4 = React.useRef<HTMLInputElement>(null);
+  const swimmer5 = React.useRef<HTMLInputElement>(null);
+  const swimmer6 = React.useRef<HTMLInputElement>(null);
+  
   const [error, setError ] = React.useState<string>("");
   const [pageNum, setPageNum] = React.useState(-1);
   const [races, setRaces] = React.useState<any[]>([]);

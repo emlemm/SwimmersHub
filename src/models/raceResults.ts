@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const raceResultsSchema = new mongoose.Schema(
   {
     eventId: { type: mongoose.Types.ObjectId, required: true, ref: "Event" },
-    swimmerId: { type: mongoose.Types.ObjectId, required: true, ref: "Swimmer" }, 
+    swimmerName: { type: String, required: true}, 
     disqualified: Boolean,
-    time: Number
+    time: String
   },
   { collection: "raceResults", timestamps: false }
 );
