@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from 'react-bootstrap/Button';
-import { Alert, Card } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
 import Accordion from 'react-bootstrap/Accordion'
 
@@ -14,7 +14,6 @@ export function MeetDetails() {
   const [results, setResults] = React.useState<any[]>([]);
   const [error, setError ] = React.useState<string>("");
   const meetId = window.location.hash.slice(13);
-  const data = React.useRef<any[]>([]);
 
   React.useEffect(() => {
     async function fetchCurrentMeet(){
@@ -41,14 +40,15 @@ export function MeetDetails() {
         </Alert> : null}
       <h2 className="m-2">{currentMeet?.hostTeam} v. {currentMeet?.travellingTeam}</h2>
       <h2 className="m-2">Date: {formatDate(currentMeet?.meetDate)}</h2>
+      <Button className="m-2" href={`#heating&racing/${meetId}`} >View Heating & Racing</Button>
       <Accordion className="row m-2 align-items-center justify-content-center" >
         {Object.entries(results)?.map(([eventId, raceResult])=> {
           return(
             <Table hover bordered className="mb-0">
               <Accordion.Item eventKey={eventId}>
-                <Accordion.Header>Race #{raceResult.event.eventNumber}: {raceResult.event.raceId.gender} {raceResult.event.raceId.ageGroup} {raceResult.event.raceId.name}</Accordion.Header>
+                <Accordion.Header>Race #{raceResult.event?.eventNumber}: {raceResult.event.raceId?.gender} {raceResult.event.raceId?.ageGroup} {raceResult.event.raceId?.name}</Accordion.Header>
                 <Accordion.Body className="table" >
-                  {raceResult.raceResults?.[0]._id? (
+                  {raceResult?.raceResults?.[0]?._id? (
                     <>
                       <thead>
                         <tr>

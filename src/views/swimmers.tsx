@@ -8,7 +8,7 @@ function formatDate(date: string) {
   return new Date(date).toLocaleDateString(undefined, {timeZone: "UTC"})
 }
 
-export function SwimmersTab() {
+export function Swimmers() {
 
   const [showSwimmerForm, setShowSwimmerForm] = React.useState(false);
   const [swimmerData, setSwimmerData] = React.useState<any[]>([]);
@@ -48,8 +48,8 @@ export function SwimmersTab() {
   },[version]);
 
   return(
-    <div>
-      <h2 className="display-3 mb-3">Your Swimmers:</h2>
+    <div className="container mx-auto">
+      <h2 className="display-3 my-2 mx-3 mb-3">Your Swimmers:</h2>
       <div className="row my-5 align-items-center justify-content-center">
         {swimmerData?.map((swimmer)=> {
           return(<Card className="mb-3" key={swimmer._id}>
@@ -62,12 +62,12 @@ export function SwimmersTab() {
           </Card>)
         })}
       </div>
-      <button className="btn btn-primary text-ltBlue2" onClick={onAddSwimmer}>Add a Swimmer</button>
+      <button className="btn btn-primary text-ltBlue2 mb-3" onClick={onAddSwimmer}>Add a Swimmer</button>
       {error ?
       <Alert variant="warning">
         {error}
       </Alert> : null}
-      {showSwimmerForm ? <Form ref={form}><br></br>
+      {showSwimmerForm ? <Form ref={form} className="border border-success border-2 rounded-2 p-2 m-2"><br></br>
         <Form.Group className="mb-3" controlId="firstName">
           <Form.Label>First name:</Form.Label>
           <Form.Control type="text" placeholder="Enter first name..." name="firstName" required />

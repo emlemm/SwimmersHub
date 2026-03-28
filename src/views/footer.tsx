@@ -4,9 +4,9 @@ export function Footer() {
   let year = d.getFullYear();
 
   return(
-    <section id="footer" >
-      <footer className="mt-auto">
-        <p className="lead ps-2">&copy; {year} - Swimmers Hub</p>
+    <section id="footer" className="bg-dkBlue">
+      <footer className="m-1">
+        <p className="lead text-light fs-6 ps-1 my-1">&copy; {year} - Swimmers Hub by Emily Lemmon</p>
       </footer>
     </section>
   )

@@ -8,6 +8,8 @@ import { router as meetRoutes } from "./routes/meetRoutes";
 import { router as raceRoutes } from "./routes/raceRoutes";
 import { router as eventRoutes } from "./routes/eventRoutes";
 import { router as raceResultsRoutes } from "./routes/raceResultsRoutes";
+import { router as heatingRoutes } from "./routes/heatingRoutes";
+import { router as racingRoutes } from "./routes/racingRoutes";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import { Util } from "./utilities/index"
@@ -47,3 +49,5 @@ app.use('/meet', meetRoutes);
 app.use('/race', raceRoutes);
 app.use('/event', eventRoutes);
 app.use('/raceResults', raceResultsRoutes);
+app.use('/heating', heatingRoutes);
+app.use('/racing', racingRoutes);

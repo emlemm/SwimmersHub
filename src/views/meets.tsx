@@ -14,7 +14,7 @@ function formatDateForValue(date:string) {
   return d.toISOString().substring(0, 10);
 }
 
-export function MeetsTab() {
+export function Meets() {
 
   const [showSwimMeetForm, setShowSwimMeetForm] = React.useState(false);
   const [swimMeetData, setSwimMeetData] = React.useState<any[]>([]);
@@ -83,11 +83,11 @@ export function MeetsTab() {
   },[version]);
 
   return(
-    <div>
+    <div className="container mx-auto">
       <h2 className="display-3 mb-3">Swim Meets:</h2>
       <div className="row my-5 align-items-center justify-content-center">
         {swimMeetData?.map((meet)=> {
-          return(<Card className="mb-3" key={meet._id}>
+          return(<Card className="mb-3 mx-2" key={meet._id}>
             <Card.Header>Date: {formatDate(meet.meetDate)}</Card.Header>
             <Card.Body>
               <Card.Title className="mb-3">Host Team: {meet.hostTeam}</Card.Title>
@@ -103,7 +103,6 @@ export function MeetsTab() {
               ): ( 
                 <>
                   <Button className="m-2" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
-                  <Button className="m-2" href={`#meetResults/${meet._id}`} >View Race Results</Button>
                 </>
               )}
               {showEditMeetForm === meet._id? <Form ref={formEdit}><br></br>
@@ -136,7 +135,7 @@ export function MeetsTab() {
       </div>
       <div>
         {accountData?.coachRole && 
-          <button className="btn btn-primary" onClick={onCreateNewMeet}>Create New Swim Meet</button>
+          <button className="btn btn-primary mb-3" onClick={onCreateNewMeet}>Create New Swim Meet</button>
         }
       </div>      
         
@@ -144,27 +143,27 @@ export function MeetsTab() {
       <Alert variant="warning">
         {error}
       </Alert> : null}
-        {showSwimMeetForm ? <Form ref={form}><br></br>
-          <Form.Group className="mb-3" controlId="meetDate">
-            <Form.Label>Date:</Form.Label>
-            <Form.Control type="date" name="meetDate" required />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="hostTeam">
-            <Form.Label>Hosting Team:</Form.Label>
-            <Form.Control type="text" placeholder="Enter name of hosting swim team..." name="hostTeam" required />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="address">
-            <Form.Label>Address:</Form.Label>
-            <Form.Control type="text" placeholder="Enter address..." name="address" required />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="travellingTeam">
-            <Form.Label>Travelling Team:</Form.Label>
-            <Form.Control type="text" placeholder="Enter name of travelling swim team..." name="travellingTeam" required />
-          </Form.Group>
-          <div className="mb-4 text-center">
-            <a onClick={submitNewSwimMeet} className="btn btn-dkBlue btn-lg">Create Swim Meet</a>
-          </div>
-        </Form>:null}
+      {showSwimMeetForm ? <Form ref={form}><br></br>
+        <Form.Group className="mb-3" controlId="meetDate">
+          <Form.Label>Date:</Form.Label>
+          <Form.Control type="date" name="meetDate" required />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="hostTeam">
+          <Form.Label>Hosting Team:</Form.Label>
+          <Form.Control type="text" placeholder="Enter name of hosting swim team..." name="hostTeam" required />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="address">
+          <Form.Label>Address:</Form.Label>
+          <Form.Control type="text" placeholder="Enter address..." name="address" required />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="travellingTeam">
+          <Form.Label>Travelling Team:</Form.Label>
+          <Form.Control type="text" placeholder="Enter name of travelling swim team..." name="travellingTeam" required />
+        </Form.Group>
+        <div className="mb-4 text-center">
+          <a onClick={submitNewSwimMeet} className="btn btn-dkBlue btn-lg">Create Swim Meet</a>
+        </div>
+      </Form>:null}
     </div>
   )
 }

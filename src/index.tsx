@@ -11,7 +11,10 @@ import { MyAccount } from "./views/myAccount";
 import { ProfileContext } from "./views/profileContext";
 import { AddEvents } from "./views/addEvents";
 import { MeetDetails } from "./views/meetDetails";
+import { HeatingRacing } from "./views/heatingRacing";
 import { InputRaceTimes } from "./views/inputRaceTimes";
+import { Meets } from "./views/meets";
+import { Swimmers } from "./views/swimmers";
 
 // Render your React component
 const root = createRoot(document.getElementById('app')!);
@@ -44,11 +47,20 @@ function App() {
           setPage(()=>MyAccount);
           setMessage("");
           break;
+        case "swimmers":
+          setPage(()=>Swimmers);
+          break;
+        case "meets":
+          setPage(()=>Meets);
+          break;
         case "addEvents": 
           setPage(()=>AddEvents);
           break;
         case "meetDetails":
           setPage(()=>MeetDetails);
+          break;
+        case "heating&racing":
+          setPage(()=>HeatingRacing);
           break;
         case "inputRaceTimes":
           setPage(()=>InputRaceTimes);
@@ -62,10 +74,13 @@ function App() {
       setIsLoggedIn(loggedIn);
       if (!loggedIn && (
         window.location.hash === "#myAccount" ||
+        window.location.hash === "#swimmers" ||
+        window.location.hash === "#meets" ||
         window.location.hash.startsWith("#addEvents") ||
         window.location.hash.startsWith("#meetDetails") ||
+        window.location.hash.startsWith("#heating&racing") ||
         window.location.hash.startsWith("#inputRaceTimes"))) {
-        setMessage("Due to inactivity, you have been logged out. Please log back in to access those features.");
+        setMessage("You have been logged out. Please log back in to access those features.");
         window.location.hash ='#login';
       }
     };

@@ -1,5 +1,4 @@
 import { Swimmer } from "../models/swimmer";
-import { User } from "../models/user";
 import { Request, Response } from "express";
 
 function validateSwimmerBody(body: any) {

@@ -1,3 +1,7 @@
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 interface NavBarProps{
   isLoggedIn?: boolean;
@@ -6,22 +10,31 @@ interface NavBarProps{
 export function NavBar(props: NavBarProps) {
 
   return(
-    <nav className="navbar navbar-expand-md navbar-light bg-medBlue">
-    <div className="container-xxl">
-      <a href="#" className="navbar-brand">
-        <span className="fw-bold text-ltBlue2">
-          <img className="m-1" src="/assets/icons/swimming-man.png" alt="Swimming man icon" width="35" />
-          Swimmers Hub
-        </span>
-      </a>
-      <div className="justify-content-end">
-        <ul className="navbar-nav">
-          <li className="nav-item ms-2">
-            <a className="nav-link active btn btn-dkBlue btn-lg text-ltBlue2" aria-current="page" href={props.isLoggedIn ? "#logout":"#login"}>{props.isLoggedIn ? "Logout":"Login"}</a>
-          </li>
-        </ul>
-      </div>
+    <div id="siteNavBar" className="">
+      <Navbar collapseOnSelect expand="md" className="bg-medBlue p-1" >
+        <Navbar.Brand href="#home" className="navbar-brand fw-bold text-ltBlue2 fs-2">
+            <img className="m-1" src="/assets/icons/swimming-man.png" alt="Swimming man icon" width="35" /> Swimmers Hub
+        </Navbar.Brand>
+        {props.isLoggedIn ? (
+          <>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" className='m-2'/>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="justify-content-end">
+                <Nav.Link className="d-flex justify-content-end" href="#myAccount">My Account</Nav.Link>
+                <Nav.Link className="d-flex justify-content-end" href="#swimmers">My Swimmers</Nav.Link>
+                <Nav.Link className="d-flex justify-content-end" href="#meets">Swim Meets</Nav.Link>
+                <Nav.Link className="d-flex justify-content-end" href="#logout">Logout</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </>
+        ) : (
+          <ul className="navbar-nav">
+            <li className="nav-item ms-2">
+              <a className="nav-link active btn btn-dkBlue btn-lg text-ltBlue2 m-1 p-2" aria-current="page" href="#login">Login</a>
+            </li>
+          </ul>
+        )} 
+      </Navbar>
     </div>
-  </nav>
   )
 };
