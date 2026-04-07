@@ -26,7 +26,7 @@ export function LoginPage() {
 
   return(
     <section id="login" >
-      <div className="container-lg">
+      <div className="container-lg mx-auto">
         <div className="text-center pt-5">
           <p className="lead">Don't yet have an account? <a href="#createAccount" className="btn btn-outline-dkBlue text-decoration-underline">Sign up here</a></p>
         </div>

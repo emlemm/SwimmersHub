@@ -1,7 +1,10 @@
 import * as React from "react";
+import { Alert } from "react-bootstrap";
 
 export function CreateAccount() {
   
+  const [error, setError ] = React.useState<string>("");
+  const [message, setMessage] = React.useState<any>(null);
   const form = React.useRef<HTMLFormElement>(null);
   const submitCreateAccount = React.useCallback(async ()=> {
     if(!form.current?.checkValidity()) {
@@ -17,18 +20,24 @@ export function CreateAccount() {
     });
     
     if (resp.ok) {
-      const responseBody = resp.json();
-      window.location.hash = "#login"
+      const responseBody = (await resp.json()).message;
+      setMessage(responseBody);
+      window.setTimeout(()=> window.location.hash = "#login", 5000)
+      
     } else {
-      window.location.hash = "#error"
+      setError((await resp.json()).message)
     }
     }, [])
 
   return(
     <section id="createAccount">
-      <div className="container-lg">
-        <div className="text-center pt-5">
-          <h2 className="display-5">Fill out the form to create your account.</h2>
+      <div className="container mx-auto">
+        <div className="text-center pt-2">
+          {error ?
+            <Alert variant="warning">
+              {error}
+            </Alert> : null}
+          <h2 className="display-3 my-2 mx-3 mb-3">Fill out the form to create your account.</h2>
           <p className="lead">Please enter your own information, not your childs. After creating an account, you can add your swimmer(s) to your account.</p>
         </div>
 
@@ -86,6 +95,10 @@ export function CreateAccount() {
               <div className="mb-4 text-center">
                 <a onClick={submitCreateAccount} className="btn btn-dkBlue btn-lg">Click here to Create Account</a>
               </div>
+              {message ?
+                <Alert variant="info">
+                  {message}
+                </Alert> : null}
             </form>
           </div>
         </div>

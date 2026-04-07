@@ -28,8 +28,8 @@ export function NavBar(props: NavBarProps) {
             </Navbar.Collapse>
           </>
         ) : (
-          <ul className="navbar-nav">
-            <li className="nav-item ms-2">
+          <ul className="navbar-nav d-flex">
+            <li className="nav-item ms-2 ms-auto bd-highlight">
               <a className="nav-link active btn btn-dkBlue btn-lg text-ltBlue2 m-1 p-2" aria-current="page" href="#login">Login</a>
             </li>
           </ul>

@@ -35,4 +35,13 @@ export const getResultsFromMeetId = async (req: Request, res: Response) => {
     }
   };
   res.status(200).json(results)
-}
+};
+
+export const getResultsFromSwimmerName = async (req: Request, res: Response) => {
+  const swimmerName = req.params.swimmerName;
+  const raceResultsBySwimmer = await RaceResults.find({swimmerName: swimmerName}).populate({
+    path: "eventId",
+    populate: [{ path: "meetId"}, { path: "raceId" }]
+  });
+  res.status(200).json(raceResultsBySwimmer)
+};

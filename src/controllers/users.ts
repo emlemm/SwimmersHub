@@ -19,7 +19,7 @@ export const createNewUser = async (req: Request, res: Response) => {
 
   const hashedPassword = await bcrypt.hashSync(req.body.password, 10);
   const user = await User.create({...req.body, password: hashedPassword});
-    res.status(201).json(user);
+    res.status(201).json({message: "User successfully created! Redirecting to Login page in 5 seconds."});
 };
 
 export const loginUser = async (req: Request, res: Response) => {

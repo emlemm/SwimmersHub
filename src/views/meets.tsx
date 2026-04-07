@@ -84,10 +84,10 @@ export function Meets() {
 
   return(
     <div className="container mx-auto">
-      <h2 className="display-3 mb-3">Swim Meets:</h2>
-      <div className="row my-5 align-items-center justify-content-center">
+      <h2 className="display-3 pt-2 my-2 mx-3 mb-3">Swim Meets:</h2>
+      <div className="row my-2 align-items-center justify-content-center mx-2">
         {swimMeetData?.map((meet)=> {
-          return(<Card className="mb-3 mx-2" key={meet._id}>
+          return(<Card style={{ maxWidth: '28rem', minHeight: '17rem' }} className="mx-2 mb-2 mt-2"  key={meet._id}>
             <Card.Header>Date: {formatDate(meet.meetDate)}</Card.Header>
             <Card.Body>
               <Card.Title className="mb-3">Host Team: {meet.hostTeam}</Card.Title>
@@ -95,17 +95,17 @@ export function Meets() {
               <Card.Text>Address: {meet.address}</Card.Text>
               {accountData?.coachRole ? (
                 <>
-                  <Button className="m-2" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
-                  <Button id="editMeetBtn" className="m-2" onClick={() => onEditMeetForm(meet._id)}>Edit Meet</Button>
-                  <Button className="m-2" href={`#addEvents/${meet._id}`} >Add Events</Button>
-                  <Button className="m-2" href={`#inputRaceTimes/${meet._id}`} >Input Results</Button>
+                  <Button className="btn-sm btn-success m-1" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
+                  <Button id="editMeetBtn" className="btn-sm btn-success m-1" onClick={() => onEditMeetForm(meet._id)}>Edit Meet</Button>
+                  <Button className="btn-sm btn-success m-1" href={`#addEvents/${meet._id}`} >Add Events</Button>
+                  <Button className="btn-sm btn-success m-1" href={`#inputRaceTimes/${meet._id}`} >Input Results</Button>
                 </>
               ): ( 
                 <>
-                  <Button className="m-2" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
+                  <Button className="btn-sm btn-success" href={`#meetDetails/${meet._id}`} >View Meet Details</Button>
                 </>
               )}
-              {showEditMeetForm === meet._id? <Form ref={formEdit}><br></br>
+              {showEditMeetForm === meet._id? <Form ref={formEdit} className="border border-success border-2 rounded-2 p-2 m-2" ><br></br>
                 <Form.Group className="mb-3" controlId="meetDate">
                   <Form.Label>Date:</Form.Label>
                   <Form.Control type="date" name="meetDate" defaultValue={formatDateForValue(meet.meetDate)} required />

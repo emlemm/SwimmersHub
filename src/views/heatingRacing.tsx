@@ -71,12 +71,14 @@ export function HeatingRacing() {
 
   return(
     <section id="heatingRacing">
-      <h1 className="display-1">Heating and Racing Info:</h1>
+      <div className="container mx-auto">
+        <h1 className="display-3 pt-2 my-2 mx-3 mb-3">Heating and Racing Info:</h1>
         {error ?
           <Alert variant="warning">
             {error}
           </Alert> : null}
-          <Card className="mb-3 mx-2">
+        <div className="row my-2 align-items-center justify-content-center mx-2" >
+          <Card style={{ maxWidth: '28rem', minHeight: '6rem' }} className="mx-2 mb-2 mt-2" >
             <Card.Header>Currently Heating:</Card.Header>
             <Card.Body>
               {heatingData?.heatingNumber ? (
@@ -104,34 +106,36 @@ export function HeatingRacing() {
               )}
             </Card.Body>
           </Card>
-          <Card className="mb-3 mx-2">
+          <Card style={{ maxWidth: '28rem', minHeight: '6rem' }} className="mx-2 mb-2 mt-2">
             <Card.Header>Currently Racing:</Card.Header>
             <Card.Body>
-              {racingData?.racingNumber ? (
-                <Card.Title className="mb-3">Event Number: {racingData?.racingNumber}</Card.Title>
-              ) : (
-                <Card.Title className="mb-3">Not currently racing</Card.Title>
-              )}
-              {accountData?.coachRole ? (
-                <>
-                  <Button className="m-2" onClick={onUpdateRacing}>Update Currently Racing</Button>
-                  {showRacingForm ? <Form ref={racingForm}>
-                    <Form.Group className="mb-3" controlId="racingNumber">
-                      <Form.Label>Racing:</Form.Label>
-                      <Form.Control type="number" name="racingNumber" required />
-                    </Form.Group>
-                    <Form.Group className="d-none" controlId="meetId">
-                      <Form.Control type="" readOnly value={meetId} name="meetId"></Form.Control>
-                    </Form.Group>
-                    <Button className="mb-2 text-center btn-success" onClick={submitRacing} >Submit Racing</Button>
-                  </Form>:null}
-                </>
-              ): ( 
-                <>
-                </>
-              )}
+            {racingData?.racingNumber ? (
+              <Card.Title className="mb-3">Event Number: {racingData?.racingNumber}</Card.Title>
+            ) : (
+              <Card.Title className="mb-3">Not currently racing</Card.Title>
+            )}
+            {accountData?.coachRole ? (
+              <>
+                <Button className="m-2" onClick={onUpdateRacing}>Update Currently Racing</Button>
+                {showRacingForm ? <Form ref={racingForm}>
+                  <Form.Group className="mb-3" controlId="racingNumber">
+                    <Form.Label>Racing:</Form.Label>
+                    <Form.Control type="number" name="racingNumber" required />
+                  </Form.Group>
+                  <Form.Group className="d-none" controlId="meetId">
+                    <Form.Control type="" readOnly value={meetId} name="meetId"></Form.Control>
+                  </Form.Group>
+                  <Button className="mb-2 text-center btn-success" onClick={submitRacing} >Submit Racing</Button>
+                </Form>:null}
+              </>
+            ): ( 
+              <>
+              </>
+            )}
             </Card.Body>
           </Card>
+        </div>
+      </div>
     </section>
   )
 };

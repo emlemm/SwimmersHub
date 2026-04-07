@@ -1,6 +1,5 @@
 import express from "express";
-import { createNewRaceResults, getResultsFromMeetId } from "../controllers/raceResults";
-//import { validateRaceResults as raceResultsVal } from "../utilities/raceResultsValidation";
+import { createNewRaceResults, getResultsFromMeetId, getResultsFromSwimmerName } from "../controllers/raceResults";
 import { Util } from "../utilities/index"
 
 export const router = express.Router();
@@ -11,4 +10,8 @@ router.post("/",
 
 router.get("/:meetId", 
   Util.handleErrors(getResultsFromMeetId)
+);
+
+router.get("/name/:swimmerName",
+  Util.handleErrors(getResultsFromSwimmerName)
 );

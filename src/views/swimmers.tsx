@@ -2,11 +2,8 @@ import * as React from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Alert } from "react-bootstrap";
-import Card from 'react-bootstrap/Card';
+import { SwimmerCard } from "./swimmerCard";
 
-function formatDate(date: string) {
-  return new Date(date).toLocaleDateString(undefined, {timeZone: "UTC"})
-}
 
 export function Swimmers() {
 
@@ -49,17 +46,10 @@ export function Swimmers() {
 
   return(
     <div className="container mx-auto">
-      <h2 className="display-3 my-2 mx-3 mb-3">Your Swimmers:</h2>
-      <div className="row my-5 align-items-center justify-content-center">
+      <h2 className="display-3 pt-2 my-2 mx-3 mb-3">Your Swimmers:</h2>
+      <div className="row my-2 align-items-center justify-content-center mx-2">
         {swimmerData?.map((swimmer)=> {
-          return(<Card className="mb-3" key={swimmer._id}>
-            <Card.Body>
-              <Card.Title>{swimmer.firstName} {swimmer.lastName}</Card.Title>
-              <Card.Text>Team: {swimmer.team}</Card.Text>
-              <Card.Text>Birthday: {formatDate(swimmer.birthday)}</Card.Text>
-              <Card.Text>Bio: {swimmer.bio}</Card.Text>
-            </Card.Body>
-          </Card>)
+          return <SwimmerCard key={swimmer._id} swimmer={swimmer}/>
         })}
       </div>
       <button className="btn btn-primary text-ltBlue2 mb-3" onClick={onAddSwimmer}>Add a Swimmer</button>

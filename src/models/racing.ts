@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const racingSchema = new mongoose.Schema(
   {
     racingNumber: { type: Number, required: true },
-    meetId: { type: mongoose.Types.ObjectId, required: true, ref: "Meet" },
+    meetId: { type: mongoose.Types.ObjectId, required: true, unique: true, ref: "Meet" },
   },
   { collection: "racing", timestamps: false }
 );

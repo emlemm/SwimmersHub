@@ -2,7 +2,7 @@ import * as React from "react";
 import Button from 'react-bootstrap/Button';
 import { Alert } from "react-bootstrap";
 import Table from 'react-bootstrap/Table';
-import Accordion from 'react-bootstrap/Accordion'
+import Accordion from 'react-bootstrap/Accordion';
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString(undefined, {timeZone: "UTC"})
@@ -33,7 +33,8 @@ export function MeetDetails() {
 
   return (
     <section id="meetDetails" className="flex-grow-1">
-      <h1 className="display-1">Meet Details:</h1>
+      <div className="container mx-auto">
+        <h2 className="display-3 pt-2 my-2 mx-3 mb-3">Meet Details:</h2>
       {error ?
         <Alert variant="warning">
           {error}
@@ -44,6 +45,7 @@ export function MeetDetails() {
       <Accordion className="row m-2 align-items-center justify-content-center" >
         {Object.entries(results)?.map(([eventId, raceResult])=> {
           return(
+          <>
             <Table hover bordered className="mb-0">
               <Accordion.Item eventKey={eventId}>
                 <Accordion.Header>Race #{raceResult.event?.eventNumber}: {raceResult.event.raceId?.gender} {raceResult.event.raceId?.ageGroup} {raceResult.event.raceId?.name}</Accordion.Header>
@@ -89,10 +91,11 @@ export function MeetDetails() {
                 </Accordion.Body>
               </Accordion.Item>
             </Table>
+          </>
           )
         })}
       </Accordion>
-      
+      </div>
     </section>
   )
 };

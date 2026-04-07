@@ -71,7 +71,7 @@ export function AddEvents() {
       body: JSON.stringify(payload)
     });
     if (resp.ok) {
-      window.location.hash = "#myAccount"
+      window.location.hash = "#meets"
     } else {
       setError((await resp.json()).message);
     }
@@ -79,52 +79,54 @@ export function AddEvents() {
 
   return(
     <section id="addEvents">
-      <h1 className="display-3">Add events to Meet</h1>
-      {error ?
-        <Alert variant="warning">
-          {error}
-        </Alert> : null}
-      <h2 className="m-2">Race: {races[pageNum]?.gender} {races[pageNum]?.ageGroup} - {races[pageNum]?.name}</h2>
-      <div className="m-1">
-        <Table hover bordered>
-          <thead>
-            <tr>
-              <th>Lane #</th>
-              <th>Swimmer Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><Form.Control type="text" ref={swimmer1} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td><Form.Control type="text" ref={swimmer2} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td><Form.Control type="text" ref={swimmer3} /></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td><Form.Control type="text" ref={swimmer4} /></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td><Form.Control type="text" ref={swimmer5} /></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td><Form.Control type="text" ref={swimmer6} /></td>
-            </tr>
-          </tbody>
-        </Table>
+      <div className="container mx-auto">
+        <h1 className="display-3 my-2 mx-3 mb-3">Add events to Meet</h1>
+        {error ?
+          <Alert variant="warning">
+            {error}
+          </Alert> : null}
+        <h2 className="m-2">Race: {races[pageNum]?.gender} {races[pageNum]?.ageGroup} - {races[pageNum]?.name}</h2>
+        <div className="m-1">
+          <Table hover bordered>
+            <thead>
+              <tr>
+                <th>Lane #</th>
+                <th>Swimmer Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><Form.Control type="text" ref={swimmer1} /></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><Form.Control type="text" ref={swimmer2} /></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><Form.Control type="text" ref={swimmer3} /></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><Form.Control type="text" ref={swimmer4} /></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><Form.Control type="text" ref={swimmer5} /></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><Form.Control type="text" ref={swimmer6} /></td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        
+        <Button className="m-1" disabled={pageNum === 0} onClick={onPrevClick}>Previous</Button>
+        <Button className="m-1" disabled={pageNum === races?.length-1} onClick={onNextClick}>Next</Button><br />
+        <Button className="m-1 btn-lg btn btn-success" onClick={submitAllEvents} >Save All</Button>
       </div>
-      
-      <Button className="m-1" disabled={pageNum === 0} onClick={onPrevClick}>Previous</Button>
-      <Button className="m-1" disabled={pageNum === races?.length-1} onClick={onNextClick}>Next</Button><br />
-      <Button className="m-1 btn-lg btn btn-success" onClick={submitAllEvents} >Save All</Button>
     </section>
   )
 }

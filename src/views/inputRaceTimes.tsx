@@ -84,7 +84,7 @@ export function InputRaceTimes() {
       body: JSON.stringify(payload)
     });
     if (resp.ok) {
-      window.location.hash = "#myAccount"
+      window.location.hash = "#meets"
     } else {
       setError((await resp.json()).message);
     }
@@ -92,7 +92,7 @@ export function InputRaceTimes() {
 
   return(
     <section id="addEvents">
-      <h1 className="display-3">Input Race Results</h1>
+      <h1 className="display-3 pt-2 my-2 mx-3 mb-3">Input Race Results</h1>
       {error ?
         <Alert variant="warning">
           {error}
